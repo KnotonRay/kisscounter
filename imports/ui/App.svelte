@@ -33,6 +33,7 @@
 <div class="container">
   <Counter/>
   <Banner/>
+  <a class='attribution' href="https://www.vecteezy.com/free-vector/number-balloon">Number Balloon Vectors by Vecteezy</a>
 </div>
 <svelte:window on:keyup|preventDefault={onKeyUp} />
 
@@ -45,8 +46,8 @@
   box-sizing: border-box;
   padding: 2%;
   margin: 0;
-  
 }
+
 .container
 {
   display: grid;
@@ -55,5 +56,14 @@
   justify-items: center;
   width: 100%;
   height: 100%;
+}
+
+.attribution
+{
+  font-size: 10px;
+  color: blue;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
 }
 </style>
