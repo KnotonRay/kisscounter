@@ -6,15 +6,21 @@
 
   Log('App.svelte script');
 
+  function sniff()
+  {
+    let sniffcheck = new URLSearchParams(document.location.search)
+    return sniffcheck === null ? '' : sniffcheck;
+  }
+
 
   const increment = () => {
     Log('increment');
-    Meteor.call('increment', document.location.pathname);
+    Meteor.call('increment', sniff());
   }
 
   const decrement = () => {
     Log('decrement');
-    Meteor.call('decrement', document.location.pathname);
+    Meteor.call('decrement', sniff());
   }
   
   const onKeyUp = (e) => {

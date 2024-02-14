@@ -23,5 +23,4 @@ img
    object-fit: cover;
 }
 
-
 </style>
