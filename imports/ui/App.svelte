@@ -8,8 +8,8 @@
 
   function sniff()
   {
-    let sniffcheck = new URLSearchParams(document.location.search)
-    return sniffcheck === null ? '' : sniffcheck;
+    var sniffcheck = new URLSearchParams(document.location.search).get('sniffcheck');
+    return null ? '' : sniffcheck;
   }
 
 
