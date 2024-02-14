@@ -9,8 +9,11 @@
   function sniff()
   {
     var sniffcheck = new URLSearchParams(document.location.search).get('sniffcheck');
-    return null ? '' : sniffcheck;
+    sniffcheck = sniffcheck === null ? '' : sniffcheck;
+    Log('sniffed "' + sniffcheck + '"');
+    return sniffcheck;
   }
+
 
 
   const increment = () => {
