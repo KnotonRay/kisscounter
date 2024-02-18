@@ -1,26 +1,44 @@
 
 
-<div class='wrap'>
-    <h1>Diapers kissed</h1>
-    <img src='/ribbon.svg'/>
-</div>
+
+<h1><span>Diapers kissed<span></h1>
+<!-- <div class='banner'> -->
+    <!-- <img src='/ribbon.svg'/> -->
+<!-- </div> -->
 <style>
-    wrap {
-        display: grid;
-        grid-template: 
-            "a"
+    .banner {
+        /* display: grid; */
+        /* grid-template:  */
+            /* "a"; */
+    }
+
+    @font-face {
+        font-family: "KissCountBanner";
+        src: url("/5yearsoldfont.medium.ttf");
     }
 
     h1 {
-        grid-area: a;
+        display: grid;
+        grid-area: banner;
         position: relative;
-        z-index: 2;
         text-align: center;
         margin: 0;
-        margin-bottom: 4%;
-        font-family: "Comic Sans MS", "Comic Sans", cursive;
-        font-size: clamp(1rem, -0.275rem + 8.333vw, 8.5rem);
-        color: lightgoldenrodyellow;
+
+        aspect-ratio: 3 / 1;
+        height: 100%;
+        background-image: url("/ribbon.svg");
+        background-size: contain;
+        background-repeat: round;
+    }
+    
+    span {
+        color: #e6ff9b;
+        font-family: "KissCountBanner", "Comic Sans MS", "Comic Sans", cursive;
+        text-shadow: 0.5vmin 0.5vmin 1px #515d1f7d;
+        font-size: 11vmin;
+        align-self: center;
+        text-wrap: nowrap;
+
     }
 
     img {

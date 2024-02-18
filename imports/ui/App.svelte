@@ -3,35 +3,47 @@
   import { Log } from 'meteor/logging';
   import Counter from './Counter';
   import Banner from './Banner';
+  import Dialog from './Dialog';
+
+  let dialog;
 
   Log('App.svelte script');
 
   var startPos = null;
+  var lastTriggered = new Date().getTime();
 
   function sniff() {
     var sniffcheck = new URLSearchParams(document.location.search).get('sniffcheck');
-    sniffcheck = sniffcheck === null ? '' : sniffcheck;
+    sniffcheck = (typeof sniffcheck === 'undefined' || sniffcheck === null ) ? '' : sniffcheck;
     Log('sniffed "' + sniffcheck + '"');
     return sniffcheck;
   };
 
-  const increment = () => {
-    Log('increment');
-    Meteor.call('increment', sniff());
+  function allowTrigger() {
+      const now = new Date().getTime();
+      const timeSinceTriggered = now - lastTriggered;
+      return timeSinceTriggered > 250;
   }
 
-  const decrement = () => {
-    Log('decrement');
-    Meteor.call('decrement', sniff());
+  function increment(n) {
+    if (allowTrigger()) {
+      Log('increment ' + n);
+      lastTriggered = new Date().getTime();
+      Meteor.call('increment', sniff(), n);
+    }
   }
   
+  window.setKisses = function setKisses(n) {
+    Meteor.call('set', sniff(), n)
+  }
+
   const onKeyUp = (e) => {
     switch(e.key) {
       case 'ArrowUp':
-        increment();
+        increment(1);
 				break;
       case 'ArrowDown':
-        decrement();
+        increment(-1);
 				break;
 		 }
   }
@@ -42,25 +54,11 @@
     return [pageWidth, pageHeight];
   }
 
-  function onMouseDown(evt) {
-    onPointerActionStart(evt);
-  }
-
-  function onMouseUp(evt) {
-    onPointerActionEnd(evt);
-  }
-
-  function onTouchStart(evt) {
-    onPointerActionStart(evt.touches[0]);
-  }
-  
-  function onTouchEnd(evt) {
-    onPointerActionEnd(evt.changedTouches[0]);
-  }
-
-  function onPointerActionStart(posSource) {
-    startPos = [posSource.pageX, posSource.pageY];
-  }
+  function onMouseDown(evt) { onPointerActionStart(evt); }
+  function onMouseUp(evt) { onPointerActionEnd(evt); }
+  function onTouchStart(evt) { onPointerActionStart(evt.touches[0]); }
+  function onTouchEnd(evt) { onPointerActionEnd(evt.changedTouches[0]); }
+  function onPointerActionStart(posSource) { startPos = [posSource.pageX, posSource.pageY]; }
 
   function onPointerActionEnd(posSource) {
     if (startPos !== null) {
@@ -80,72 +78,97 @@
 
         // near screen center
         if (Math.abs(endX - halfWidth) < 10 && Math.abs(endY - halfHeight) < 100) {
-          increment();
+          increment(1);
         }
 
       // vertical swipe
       } else if (Math.abs(deltaY) > 200) {
 
         // swipe down
-        if (deltaX > 0) {
-          decrement();
+        if (deltaY > 0) {
+          increment(-1);
 
         // swipe up
         } else {
-          increment();
+          increment(1);
 
         }
       }
     }
   }
 
-  document.addEventListener('mousedown', onMouseDown);
-  document.addEventListener('mouseup', onMouseUp);
-  document.addEventListener('touchstart', onTouchStart);
-  document.addEventListener('touchend', onTouchEnd);
-
+  function showDialog() {
+    dialog.showModal();
+  }
 </script>
 
 
+
 <div class="container">
+<button on:click={showDialog} on:touchend={showDialog}>?</button>
+<Dialog bind:dialog/>
   <Counter/>
   <Banner/>
-  <a class='attribution' href="https://www.vecteezy.com/free-vector/number-balloon">Number Balloon Vectors by Vecteezy</a>
+  <!-- <a class='attribution' href="https://www.vecteezy.com/free-vector/number-balloon">Number Balloon Vectors by Vecteezy</a> -->
 </div>
-<svelte:window on:keyup|preventDefault={onKeyUp} />
+<svelte:window on:keyup|preventDefault={onKeyUp} 
+               on:mousedown|preventDefault={onMouseDown} 
+               on:mouseup|preventDefault={onMouseUp} 
+               on:touchstart={onTouchStart} 
+               on:touchend={onTouchEnd} />
 
 <style>
 
 :global(html) {
   overflow: hidden;
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
 }
 
 :global(body) {
-  display: grid;
-  background: linear-gradient(to top, #0072ff 0%, #00c6ff 100%);
-  height: 100%;
-  width: auto;
-  box-sizing: border-box;
-  padding: 2%;
-  margin: 0;
   overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(to top, #0072ff 0%, #00c6ff 100%);
+}
+
+button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 5vmin;
+    z-index: 2;
+    width: 5vmin;
+    height: 5vmin;
+    border: none;
+    background: none;
+    color: blue;
+}
+
+button:focus-visible {
+  outline: none;
 }
 
 .container
 {
-  display: grid;
-  align-self: center;
-  align-items: center;
-  justify-items: center;
+  overflow: hidden;
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
-  grid-template-rows: 80% min-content 5%;
+
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-areas: "counter" "banner";
+  grid-template-rows: 1fr 30vmin;
 }
 
 .attribution
 {
+  grid-area: footer;
   font-size: 10px;
   color: blue;
 }
