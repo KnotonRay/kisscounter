@@ -7,29 +7,30 @@
 </script>
 
 <dialog bind:this={dialog} on:close>
-    <button on:click={closeDialog} on:touchend={closeDialog}>X</button>
+    <button class='close' on:click={closeDialog} on:touchend={closeDialog}>X</button>
     <slot/>
 </dialog>
 
 <style>
+
 dialog {
     width: 80vmin;
     height: 80vmin;
+    overflow-x: hidden;
 
+    background: #d4dbff;
+    border: none;
 }
 
-button {
+button.close {
     position: absolute;
-    top: 0;
-    right: 0;
+    right: 1vmin;
     font-size: 5vmin;
     width: 5vmin;
     height: 5vmin;
 }
 
-button:focus-visible {
+button.close:focus-visible {
   outline: none;
 }
-
-
 </style>

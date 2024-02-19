@@ -4,8 +4,9 @@
   import Counter from './Counter';
   import Banner from './Banner';
   import Dialog from './Dialog';
-
-  let dialog;
+  import Chat from './Chat';
+  import Tabs from './Tabs';
+  import FAQ from './FAQ';
 
   Log('App.svelte script');
 
@@ -97,16 +98,25 @@
     }
   }
 
+  let dialog;
   function showDialog() {
     dialog.showModal();
   }
+
 </script>
 
 
 
 <div class="container">
-<button on:click={showDialog} on:touchend={showDialog}>?</button>
-<Dialog bind:dialog/>
+  <button on:click={showDialog} on:touchend={showDialog}>?</button>
+  <Dialog bind:dialog>
+    <Tabs
+        tabs_={[
+          { name: 'Chat', content: Chat },
+          { name: 'FAQ', content: FAQ }
+        ]}
+    />
+  </Dialog>
   <Counter/>
   <Banner/>
   <!-- <a class='attribution' href="https://www.vecteezy.com/free-vector/number-balloon">Number Balloon Vectors by Vecteezy</a> -->
