@@ -30,29 +30,44 @@
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-rows: 5% 1fr;
+    grid-template-rows: min-content 1fr;
 }
 
 .buttons {
     width: 100%;
     display: grid;
     justify-content: left;
-    grid-template-columns: repeat(auto-fill, 20%);
+    grid-template-columns: repeat(auto-fit, minmax(min-content, 8%));
     grid-gap: 5px;
+}
+
+.buttons button {
+    height: 40px;
+    width: 100px;
+    border: none;
 }
 
 .tabContent {
     padding: 2%;
     height: 96%;
+    background: #d4dbff;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
 }
 
 
 .tab {
-    background-color: #f4f4f5;
-    padding: 1rem;
+    background-color: #bebeff;
+    border-top-left-radius: 1vmin;
+    border-top-right-radius: 1vmin;
+    position: relative;
+    top: 1px;
 }
 
 .tab.active {
-    background-color: #e4e4e7;
+    background: #d4dbff;
+    /* background-color: #aeb1f9; */
+    border-bottom: none;
 }
 </style>

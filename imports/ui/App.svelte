@@ -7,6 +7,8 @@
   import Chat from './Chat';
   import Tabs from './Tabs';
   import FAQ from './FAQ';
+  import AboutMe from './AboutMe';
+  import History from './History';
 
   Log('App.svelte script');
 
@@ -87,11 +89,11 @@
 
         // swipe down
         if (deltaY > 0) {
-          increment(-1);
+          increment(1);
 
         // swipe up
         } else {
-          increment(1);
+          increment(-1);
 
         }
       }
@@ -112,8 +114,10 @@
   <Dialog bind:dialog>
     <Tabs
         tabs_={[
+          { name: 'FAQ', content: FAQ },
+          { name: 'About' + String.fromCharCode(160) + 'Me', content: AboutMe },
+          { name: 'History', content: History},
           { name: 'Chat', content: Chat },
-          { name: 'FAQ', content: FAQ }
         ]}
     />
   </Dialog>
@@ -147,15 +151,16 @@
 
 button {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 1vmin;
+    right: 1vmin;
     font-size: 5vmin;
     z-index: 2;
     width: 5vmin;
     height: 5vmin;
     border: none;
-    background: none;
-    color: blue;
+    background-color:  #0072ff;
+    color: #00c6ff;
+    border-radius: 5px;
 }
 
 button:focus-visible {

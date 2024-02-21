@@ -14,12 +14,16 @@
 <style>
 
 dialog {
-    width: 80vmin;
-    height: 80vmin;
+    width: 95vmax;
+    height: 90%;
     overflow-x: hidden;
 
-    background: #d4dbff;
+    /* background: #d4dbff; */
+    background: transparent;
     border: none;
+
+    border-top-left-radius: 5px;
+    border-bottom-radius: 5px;
 }
 
 button.close {
