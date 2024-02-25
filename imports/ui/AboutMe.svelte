@@ -21,3 +21,18 @@ My FetLife is the most tame in that regard.
 <li><a href='https://fetlife.com/users/368206'>FetLife</a></li>
 <li><a href='https://f-list.net/c/knoton'>F-List</a></li>
 </ul>
+
+<style>
+    @font-face {
+        font-family: "ShortStack";
+        src: url("/ShortStack-Regular.ttf");
+    }
+
+    p, li {
+        font-family: "ShortStack", "Comic Sans MS", "Comic Sans", arial;
+    }
+
+    :not(a) {
+        color: #3608ad;
+    }
+</style>

@@ -31,6 +31,7 @@
     height: 100%;
     display: grid;
     grid-template-rows: min-content 1fr;
+    overflow: hidden;
 }
 
 .buttons {
@@ -54,6 +55,7 @@
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
+    overflow-y: auto;
 }
 
 
@@ -63,6 +65,7 @@
     border-top-right-radius: 1vmin;
     position: relative;
     top: 1px;
+    cursor: pointer;
 }
 
 .tab.active {

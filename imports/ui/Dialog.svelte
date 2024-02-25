@@ -23,18 +23,26 @@ dialog {
     border: none;
 
     border-top-left-radius: 5px;
-    border-bottom-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 button.close {
     position: absolute;
-    right: 1vmin;
-    font-size: 5vmin;
-    width: 5vmin;
-    height: 5vmin;
+    right: 20px;
+    top: 60px;
+    font-size: 30px;
+    width: 40px;
+    height: 40px;
 }
 
 button.close:focus-visible {
   outline: none;
+}
+
+button.close {
+  cursor: pointer;
+  border: none;
+  border-radius: 7px;
 }
 </style>

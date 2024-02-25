@@ -4,7 +4,6 @@
 iframe {
     width: 100%;
     height: 98%;
-    padding-top: 2%;
     border: none;
 }
 </style>

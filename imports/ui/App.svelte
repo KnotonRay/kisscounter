@@ -117,13 +117,11 @@
           { name: 'FAQ', content: FAQ },
           { name: 'About' + String.fromCharCode(160) + 'Me', content: AboutMe },
           { name: 'History', content: History},
-          { name: 'Chat', content: Chat },
         ]}
     />
   </Dialog>
   <Counter/>
   <Banner/>
-  <!-- <a class='attribution' href="https://www.vecteezy.com/free-vector/number-balloon">Number Balloon Vectors by Vecteezy</a> -->
 </div>
 <svelte:window on:keyup|preventDefault={onKeyUp} 
                on:mousedown|preventDefault={onMouseDown} 
@@ -153,14 +151,15 @@ button {
     position: absolute;
     top: 1vmin;
     right: 1vmin;
-    font-size: 5vmin;
+    font-size: 30px;
     z-index: 2;
-    width: 5vmin;
-    height: 5vmin;
+    width: 40px;
+    height: 40px;
     border: none;
     background-color:  #0072ff;
     color: #00c6ff;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 button:focus-visible {
