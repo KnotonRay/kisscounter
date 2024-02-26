@@ -162,6 +162,10 @@ button {
     cursor: pointer;
 }
 
+button {
+  cursor: pointer;
+}
+
 button:focus-visible {
   outline: none;
 }
