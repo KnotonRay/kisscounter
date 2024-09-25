@@ -22,6 +22,7 @@
         grid-area: banner;
         position: relative;
         text-align: center;
+        user-select: none;
         margin: 0;
 
         aspect-ratio: 3 / 1;
