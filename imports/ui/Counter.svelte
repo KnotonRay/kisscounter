@@ -35,6 +35,7 @@
     padding: 0;
     grid-template-columns: repeat(4, 1fr);
     justify-content: center;
+    user-select: none;
 }
 
     
