@@ -10,6 +10,7 @@ of the last four CAPCons or BabyFurCon and they will likely recall “the diaper
     <li>CAP '24: 296</li>
     <li>BFC '24: 326</li>
     <li>SideQuest: 217</li>
+    <li>BFC '25: 346</li>
     <li>Misc events: 40</li>
 </ul>
 <p>
